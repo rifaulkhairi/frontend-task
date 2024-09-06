@@ -1,0 +1,60 @@
+<div class="flex rounded-md flex-col gap-y-3">
+  <span class="flex justify-start gap-x-2">
+    <button
+      class="flex py-2 px-3 bg-blue-700 rounded-md text-white hover:bg-blue-700/75"
+      (click)="handleAddCabang()"
+    >
+      Tambah
+    </button>
+    <!-- <button
+      class="flex py-2 px-3 bg-blue-700 rounded-md text-white hover:bg-blue-700/75"
+      routerLink="/employee-list"
+    >
+      Import
+    </button> -->
+  </span>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Kode Jabatan</th>
+          <th scope="col" class="px-6 py-3">Nama Jabatan</th>
+
+          <th scope="col" class="px-6 py-3">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (jabatan of daftarjabatan; track $index) {
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <td class="px-6 py-4">{{ jabatan.kodeJabatan }}</td>
+          <td class="px-6 py-4">{{ jabatan.namaJabatan }}</td>
+
+          <td class="px-6 py-4 text-right flex gap-x-2">
+            <button
+              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              (click)="handleEditJabatan(jabatan.kodeJabatan)"
+            >
+              Edit
+            </button>
+            <button
+              (click)="handleHapusCabang(jabatan.kodeJabatan)"
+              class="font-medium text-red-600 dark:text-blue-500 hover:underline"
+            >
+              hapus
+            </button>
+          </td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+  <span class="h-44"></span>
+</div>

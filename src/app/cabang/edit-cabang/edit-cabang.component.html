@@ -1,0 +1,17 @@
+<form class="w-[27rem] p-6 rounded-lg shadow-md" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <mat-form-field class="w-full">
+      <mat-label>Nama Cabang</mat-label>
+      <input
+        matInput
+        placeholder="Nama Cabang"
+        name="namacabang"
+        [(ngModel)]="cabangdata.namaCabang"
+      />
+    </mat-form-field>
+
+    <div class="mt-4">
+      <button mat-flat-button type="submit">Kirim</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,70 @@
+<form class="w-[27rem] p-6 rounded-lg shadow-md" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <mat-form-field class="w-full">
+      <mat-label>Nama Pegawai</mat-label>
+      <input
+        matInput
+        placeholder="Nama Pegawai"
+        name="name"
+        [(ngModel)]="pegawaidata.namaPegawai"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full" id="cabang">
+      <mat-label>Pilih Cabang</mat-label>
+      <mat-select [(ngModel)]="pegawaidata.kodeCabang" name="cabang">
+        <mat-option>None</mat-option>
+        @for (item of datacabang; track $index) {
+        <mat-option value="{{ item.kodeCabang }}">{{
+          item.namaCabang
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <!-- {{pegawaidata.kodeJabatan}} -->
+    <mat-form-field class="w-full" id="jabatan">
+      <mat-label>Pilih Jabatan</mat-label>
+      <mat-select [(ngModel)]="pegawaidata.kodeJabatan" name="jabatan">
+        <mat-option>None</mat-option>
+        @for (item of datajabatan; track $index) {
+        <mat-option value="{{ item.kodeJabatan }}">{{
+          item.namaJabatan
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Tanggal Mulai Kontrak</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        [(ngModel)]="pegawaidata.tanggalMulaiKontrak"
+        name="tanggalMulaiKontrak"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker1"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Tanggal Habis Kontrak</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        [(ngModel)]="pegawaidata.tanggalHabisKontrak"
+        name="tanggalHabisKontrak"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker2"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <div class="mt-4">
+      <button mat-flat-button type="submit">Kirim</button>
+    </div>
+  </div>
+</form>
