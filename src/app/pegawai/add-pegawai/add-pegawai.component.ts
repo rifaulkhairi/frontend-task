@@ -87,7 +87,6 @@ export class AddPegawaiComponent implements OnInit {
         },
         error: (err) => {
           console.error('Failed to add employee:', err);
-          this.dialogRef.close('success');
         },
       });
     console.log(this.pegawaidata);
@@ -96,11 +95,13 @@ export class AddPegawaiComponent implements OnInit {
   getCabang() {
     this.http
       .get(`http://localhost:8080/api/cabang`)
-      .subscribe((response: any) => (this.datacabang = response));
+      .subscribe((response: any) => (this.datacabang = response.data));
   }
   getJabatan() {
     this.http
       .get(`http://localhost:8080/api/jabatan`)
-      .subscribe((response: any) => (this.datajabatan = response));
+      .subscribe((response: any) => (this.datajabatan = response.data));
   }
+
+
 }

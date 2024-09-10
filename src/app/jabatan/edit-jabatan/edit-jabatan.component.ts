@@ -40,7 +40,7 @@ export class EditJabatanComponent implements OnInit {
     this.http
       .get(`http://localhost:8080/api/jabatan/${this.data.kodejabatan}`)
       .subscribe((rs: any) => {
-        this.datajabatan = rs;
+        this.datajabatan = rs.data;
       });
   }
 
@@ -56,7 +56,7 @@ export class EditJabatanComponent implements OnInit {
         },
         error: (err: any) => {
           console.error('Failed to jabatan:', err);
-          this.dialogRef.close('success');
+          this.dialogRef.close('error');
         },
       });
   }

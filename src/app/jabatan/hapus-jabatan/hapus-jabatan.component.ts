@@ -26,7 +26,7 @@ export class HapusJabatanComponent {
           this.dialogRef.close('success');
         },
         error: (err: any) => {
-          this.dialogRef.close('success');
+          this.dialogRef.close('error');
         },
       });
   }

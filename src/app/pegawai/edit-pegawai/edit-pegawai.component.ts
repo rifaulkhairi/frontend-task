@@ -102,9 +102,9 @@ export class EditPegawaiComponent implements OnInit {
       .get(`http://localhost:8080/api/pegawai/${this.data.kodePegawai}`)
       .subscribe((rs: any) => {
         this.pegawaidata = {
-          ...rs,
-          kodeCabang: String(rs.kodeCabang),
-          kodeJabatan: String(rs.kodeJabatan),
+          ...rs.data,
+          kodeCabang: String(rs.data.kodeCabang),
+          kodeJabatan: String(rs.data.kodeJabatan),
         };
       });
   }
@@ -112,11 +112,11 @@ export class EditPegawaiComponent implements OnInit {
   getCabang() {
     this.http
       .get(`http://localhost:8080/api/cabang`)
-      .subscribe((response: any) => (this.datacabang = response));
+      .subscribe((response: any) => (this.datacabang = response.data));
   }
   getJabatan() {
     this.http
       .get(`http://localhost:8080/api/jabatan`)
-      .subscribe((response: any) => (this.datajabatan = response));
+      .subscribe((response: any) => (this.datajabatan = response.data));
   }
 }

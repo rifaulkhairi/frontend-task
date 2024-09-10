@@ -42,7 +42,7 @@ export class EditCabangComponent implements OnInit {
     this.http
       .get(`http://localhost:8080/api/cabang/${this.data.idcabang}`)
       .subscribe((rs: any) => {
-        this.cabangdata = rs;
+        this.cabangdata = rs.data;
         // console.log(this.cabangdata);
       });
   }

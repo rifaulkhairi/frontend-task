@@ -35,7 +35,7 @@
     </div>
   </span>
 
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg px-4 pb-4">
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
     >
@@ -87,5 +87,30 @@
         }
       </tbody>
     </table>
+    <div class="flex justify-end w-full gap-x-2 mt-3">
+      <mat-form-field class="w-[100px]">
+        <mat-label>Result</mat-label>
+        <mat-select
+          [(ngModel)]="filterdata.size"
+          (selectionChange)="onChange()"
+        >
+          <mat-option [value]="5">5</mat-option>
+          <mat-option [value]="10">10</mat-option>
+          <mat-option [value]="20">20</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        class="p-2 text-blue-600 rounded-full hover:bg-blue-600/5"
+        (click)="backClick()"
+      >
+        <i class="fa-solid fa-chevron-left text-lg w-7 h-7"></i>
+      </button>
+      <button
+        class="p-2 text-blue-600 rounded-full hover:bg-blue-600/5"
+        (click)="nextClick()"
+      >
+        <i class="fa-solid fa-chevron-right text-lg w-7 h-7"></i>
+      </button>
+    </div>
   </div>
 </div>

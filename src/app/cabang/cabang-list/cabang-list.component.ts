@@ -26,7 +26,7 @@ export class CabangListComponent implements OnInit {
 
   getCabang() {
     this.http.get(`http://localhost:8080/api/cabang`).subscribe((rs: any) => {
-      this.daftarCabang = rs;
+      this.daftarCabang = rs.data;
     });
   }
   handleAddCabang() {

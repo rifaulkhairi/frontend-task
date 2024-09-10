@@ -25,7 +25,7 @@ export class JabatanListComponent implements OnInit {
 
   getJabatan() {
     this.http.get(`http://localhost:8080/api/jabatan`).subscribe((rs: any) => {
-      this.daftarjabatan = rs;
+      this.daftarjabatan = rs.data;
     });
   }
   handleAddCabang() {

@@ -10,38 +10,53 @@ import { HapusPegawaiComponent } from '../pegawai/hapus-pegawai/hapus-pegawai.co
 import { ImportComponent } from '../pegawai/import/import.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-pegawai-display',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MatInputModule, FormsModule],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    MatInputModule,
+    FormsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
+  ],
   templateUrl: './pegawai-display.component.html',
   styleUrl: './pegawai-display.component.css',
 })
 export class PegawaiDisplayComponent implements OnInit {
   namaPegawai = 'rifa ulkhairi';
-  baseUrlBackend: any = 'http://127.0.0.1:8080';
+  baseUrlBackend: any = 'http://localhost:8080';
   http = inject(HttpClient);
   employees: Pegawai[];
   cabang$: Observable<any[]> | undefined = undefined;
 
   filterdata: any = {
     data: 100,
+    page: 1,
+    size: 10,
   };
 
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
     this.getPegawai();
     this.employees = [];
+    console.log(this.baseUrlBackend);
   }
 
   getPegawai() {
     this.http
       .get(
-        `http://localhost:8080/api/pegawai/filter?DaysToExpire=${this.filterdata.data}`
+        `${this.baseUrlBackend}/api/pegawai/filter?DaysToExpire=${this.filterdata.data}&page=${this.filterdata.page}&size=${this.filterdata.size}`
       )
       .subscribe((response: any) => {
-        this.employees = response;
+        this.employees = response.data;
         console.log(this.employees);
       });
   }
@@ -87,5 +102,28 @@ export class PegawaiDisplayComponent implements OnInit {
 
   handleOpenImport() {
     const dialogRef = this.dialog.open(ImportComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'success') {
+        this.getPegawai();
+      }
+    });
+  }
+
+  backClick() {
+    this.filterdata.page -= 1;
+    if (this.filterdata.page < 1) {
+      this.filterdata.page = 1;
+    }
+    this.getPegawai();
+  }
+  nextClick() {
+    this.filterdata.page += 1;
+    console.log(this.filterdata);
+    this.getPegawai();
+  }
+  onChange() {
+    console.log(this.filterdata);
+    this.getPegawai();
   }
 }
